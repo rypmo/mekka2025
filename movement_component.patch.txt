@@ -1,0 +1,52 @@
+diff --git a/scripts/player/movement.gd b/scripts/player/movement.gd
+new file mode 100644
+index 0000000..44a1b1c
+--- /dev/null
++++ b/scripts/player/movement.gd
+@@
++extends CharacterBody2D
++class_name PlayerMovement
++
++@export var speed: float = 160.0
++
++func _physics_process(_delta: float) -> void:
++	# Build input vector from custom actions (WASD + arrows)
++	var dir := Vector2(
++		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
++		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
++	)
++
++	if dir.length_squared() > 0.0:
++		dir = dir.normalized()
++
++	velocity = dir * speed
++	move_and_slide()
++
++	# Example sprite flip (uncomment if you add a Sprite2D child):
++	# if dir.x != 0 and has_node("Sprite2D"):
++	#     $Sprite2D.flip_h = dir.x < 0
++
+diff --git a/scenes/player/Player.tscn b/scenes/player/Player.tscn
+new file mode 100644
+index 0000000..55b0d4e
+--- /dev/null
++++ b/scenes/player/Player.tscn
+@@
++[gd_scene load_steps=2 format=3]
++
++[ext_resource path="res://scripts/player/movement.gd" type="Script" id=1]
++
++[node name="Player" type="CharacterBody2D"]
++script = ExtResource( 1 )
++
++# Add a Sprite2D or AnimatedSprite2D as a child in the editor to visualise the player.
++
+diff --git a/project.godot b/project.godot
+--- a/project.godot
++++ b/project.godot
+@@
+ [input]
++move_up={\"deadzone\":0.5,\"events\":[{\"type\":\"KEY\",\"keycode\":87},{\"type\":\"KEY\",\"keycode\":16777235}]}
++move_down={\"deadzone\":0.5,\"events\":[{\"type\":\"KEY\",\"keycode\":83},{\"type\":\"KEY\",\"keycode\":16777237}]}
++move_left={\"deadzone\":0.5,\"events\":[{\"type\":\"KEY\",\"keycode\":65},{\"type\":\"KEY\",\"keycode\":16777234}]}
++move_right={\"deadzone\":0.5,\"events\":[{\"type\":\"KEY\",\"keycode\":68},{\"type\":\"KEY\",\"keycode\":16777236}]}
