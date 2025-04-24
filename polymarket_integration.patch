@@ -21,7 +21,7 @@ index 0000000..2222222
 +extends Node
 +class_name PolymarketClient
 +
-+# Autoload this script as â€œPolymarketClientâ€
++# Autoload this script as “PolymarketClient”
 +
 +const API_URL := "https://www.polymarket.com/api/v3/markets/"
 +const CACHE_TTL := 86_400  # 24 h
@@ -29,7 +29,7 @@ index 0000000..2222222
 +var _cache := {}  # contract_id : { price: float, timestamp: int }
 +
 +func get_yes_price(contract_id: String) -> float:
-+	# Return cached value if itâ€™s still fresh
++	# Return cached value if it’s still fresh
 +	if _cache.has(contract_id):
 +		var entry := _cache[contract_id]
 +		if Time.get_unix_time_from_system() - entry.timestamp < CACHE_TTL:
@@ -65,7 +65,7 @@ index 0000000..3333333
 +extends Node
 +class_name LootSystem
 +
-+# Autoload this script as â€œLootSystemâ€
++# Autoload this script as “LootSystem”
 +
 +@export var base_weights := { "common": 60.0, "uncommon": 25.0, "rare": 12.0, "epic": 3.0 }
 +var current_weights := {}
@@ -78,8 +78,8 @@ index 0000000..3333333
 +	var total := 0.0
 +	for tier in base_weights.keys():
 +		var cid: String = contracts[tier]
-+		var price := PolymarketClient.get_yes_price(cid)  # 0.0 â€“ 1.0
-+		var multiplier := lerp(0.8, 1.2, price)          # 0.8Ã— â†’ 1.2Ã—
++		var price := PolymarketClient.get_yes_price(cid)  # 0.0 – 1.0
++		var multiplier := lerp(0.8, 1.2, price)          # 0.8× ? 1.2×
 +		current_weights[tier] = base_weights[tier] * multiplier
 +		total += current_weights[tier]
 +
