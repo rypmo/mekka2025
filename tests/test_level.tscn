@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmfcayedv8tg6"]
+
+[ext_resource type="PackedScene" uid="uid://dpecff6trr5tu" path="res://scenes/player/mech.tscn" id="1_jyc24"]
+[ext_resource type="PackedScene" uid="uid://b55wg6ln24rqp" path="res://scenes/enemies/enemy.tscn" id="2_kxg8d"]
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Mech" parent="." instance=ExtResource("1_jyc24")]
+position = Vector2(577, 322)
+
+[node name="Enemy" parent="." instance=ExtResource("2_kxg8d")]
+position = Vector2(120, 540)
+
+[node name="Enemy2" parent="." instance=ExtResource("2_kxg8d")]
+position = Vector2(104, 80)

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpecff6trr5tu"]
+
+[ext_resource type="Script" path="res://scripts/player/mech.gd" id="1_k0wy2"]
+[ext_resource type="PackedScene" uid="uid://cl4j3lgfo0rui" path="res://scenes/player/projectile.tscn" id="2_fja2s"]
+[ext_resource type="Texture2D" uid="uid://o84s6rllxyj2" path="res://icon.svg" id="2_n20gc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dljbf"]
+size = Vector2(129, 128)
+
+[node name="Mech" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_k0wy2")
+projectile_scene = ExtResource("2_fja2s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_n20gc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_dljbf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 2.0
