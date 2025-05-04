@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpecff6trr5tu"]
 
-[ext_resource type="Script" path="res://scripts/player/mech.gd" id="1_k0wy2"]
+[ext_resource type="Script" uid="uid://nfo3pmwu3aus" path="res://scripts/player/mech.gd" id="1_k0wy2"]
 [ext_resource type="PackedScene" uid="uid://cl4j3lgfo0rui" path="res://scenes/player/projectile.tscn" id="2_fja2s"]
 [ext_resource type="Texture2D" uid="uid://o84s6rllxyj2" path="res://icon.svg" id="2_n20gc"]
 
@@ -18,8 +18,23 @@ texture = ExtResource("2_n20gc")
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_dljbf")
 
+[node name="PlayerHurtbox" type="Area2D" parent="." groups=["player_hurtbox"]]
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtbox"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_dljbf")
+
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 2400
+limit_bottom = 1600
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 2.0
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(70, 0)
